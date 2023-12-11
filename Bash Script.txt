@@ -84,7 +84,44 @@ else
     ls "$1"
 fi
 
-6-
+6- 
+echo "Enter option "
+echo "l,a,d,i,R : "
+read option
+
+if [ "$#" -eq 0 ]; then
+    if [ "$option" = "l" ]; then
+        ls -l
+    elif [ "$option" = "a" ]; then
+        ls -a
+    elif [ "$option" = "d" ]; then
+        ls -d */
+    elif [ "$option" = "i" ]; then
+        ls -i
+    elif [ "$option" = "R" ]; then
+        ls -R
+    else
+        echo "Invalid option"
+    fi
+else
+    if [ -d "$1" ]; then
+        if [ "$option" = "l" ]; then
+            ls -l "$1"
+        elif [ "$option" = "a" ]; then
+            ls -a "$1"
+        elif [ "$option" = "d" ]; then
+            ls -d "$1"
+        elif [ "$option" = "i" ]; then
+            ls -i "$1"
+        elif [ "$option" = "R" ]; then
+            ls -R "$1"
+        else
+            echo "Invalid option"
+        fi
+    else
+        echo "Not a directory"
+    fi
+fi
 ---------------------------------------------------------------------------------------------------
 
 
