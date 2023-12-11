@@ -22,4 +22,69 @@ Using awk utility
 7- awk -F: '$3 > max {max=$3; line=$0} END {print line}' /etc/passwd
 8- awk -F: '{sum += $3} END {print sum}' /etc/passwd
 
------------------------------------------------------------------------------------------------
+---------------------------------------------------------------------------------------------------
+Lab 2
+---------------------------------------------------------------------------------------------------
+1-
+
+#!/bin/bash
+echo -n "Enter your name: "
+read userName
+echo "Hello, $userName!."
+
+2- a) s1 :
+
+#!/bin/bash
+x=5
+./s2.sh
+
+b) s2: 
+#!/bin/bash
+echo "Method 1: Value of x in s2 is $x"
+# Method 2
+./s2.sh "$x"
+
+3- mycp :
+
+#!/bin/bash
+
+if [ "$#" -lt 2 ]; then
+    echo "Usage: $0 <source> <destination>"
+    echo "       $0 <file1> <file2> ... <destination>"
+    exit 1
+fi
+
+if [ -d "${@: -1}" ]; then
+    destination="${@: -1}"
+    cp "${@:1:$#-1}" "$destination"
+    echo "Copied ${@:1:$#-1} to $destination"
+else
+    if [ "$#" -eq 2 ]; then
+        cp "$1" "$2"
+        echo "Copied $1 to $2"
+      exit 1
+fi
+
+4- mycd:
+#!/bin/bash
+
+if [ "$#" -eq 0 ]; then
+    # no arguments
+    cd ~
+else
+    cd "$1"
+fi
+
+5- myls :
+#!/bin/bash
+
+if [ "$#" -eq 0 ]; then
+    ls
+else
+    ls "$1"
+fi
+
+6-
+---------------------------------------------------------------------------------------------------
+
+
