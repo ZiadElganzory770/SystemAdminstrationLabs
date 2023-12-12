@@ -122,6 +122,49 @@ else
         echo "Not a directory"
     fi
 fi
+
+7- mytest :
+ 
+#!/bin/bash
+
+if [ $# -eq 1 ]; then
+
+    	if [ -d $1 ]; then
+            	echo "$1 ->directory"
+    	elif [ -f $1 ]; then
+            	echo "$1-> file"
+    	else
+            	echo "$1 Nither a file nor a directory "
+    	fi
+
+    	if [ -r $1 ]; then
+            	echo "$1-> readable"
+    	fi
+    	if [ -w $1 ]; then
+            	echo "$1-> writable"
+    	fi
+    	if [ -x $1 ]; then
+            	echo "$1-> executable"
+    	fi
+else
+
+    	echo "The script has one argument"
+fi
+
+8- myinfo :
+
+#!/bin/bash
+
+
+read -p "Enter your login name: " name
+
+ls -lR /home/$name
+
+
+cp -r /home/$name/* /tmp
+
+ps -u $name
+
 ---------------------------------------------------------------------------------------------------
 
 
