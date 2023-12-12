@@ -166,5 +166,113 @@ cp -r /home/$name/* /tmp
 ps -u $name
 
 ---------------------------------------------------------------------------------------------------
+Lab 3
+---------------------------------------------------------------------------------------------------
+
+1- mycase :
+
+#!/bin/bash
+read -p "Enter a character: " var
+
+case $var in
+    [A-Z]) echo "Upper Case";;
+    [a-z]) echo "Lower Case";;
+    [0-9]) echo "Number";;
+    "") echo "Nothing";;
+    *) echo "Invalid Input";;
+esac
+
+2- mycase :
+
+#!/bin/bash
+
+echo "Enter a character plesae"
+
+read char
+
+case $char in
+        [a-z]) echo "lower cases";;
+        [A-z]) echo "upper cases";;
+        [0-9]) echo "Numbers";;
+        [A-Za-z0-9]) echo "Mix";;
+        *) echo "nothing was entered";;
+esac
+
+3- mychmod :
+
+#!/bin/bash
+
+home_dir="$HOME"
+
+for file_dir in "$home_dir"/*; do
+    # Check if the item is a file or directory
+    if [ -f "$file_dir" ] || [ -d "$file_dir" ]; then
+        chmod +x "$file_dir"
+        echo "Execute permission added to: $file_dir"
+    fi
+done
+
+echo "Task Completed"
+
+4- mybackup :
+
+#!/bin/bash
+
+home_dir="$HOME"
+
+backup_dir="$home_dir/backup"
+mkdir "$backup_dir" && echo "Backup directory created: $backup_dir"
+
+for file in "$home_dir"/*; do
+    if [ -f "$file" ]; then
+        cp "$file" "$backup_dir"
+        echo "File backed up: $file"
+    fi
+done
+
+echo "Backup Done."
+
+5- mymail :
+
+#!/bin/bash
+
+template="mailtemp"
+
+subject="Greetings from MyMail Script"
+
+if [ ! -f "$template" ]; then
+    echo "Mail template file '$template' is not found."
+    exit 1
+fi
+
+for user in $(cut -d: -f1 /etc/passwd); do
+    mail -s "$subject" "$user" < "$template"
+    echo "Email sent to  :$user"
+done
+
+
+6- chkmail :
+
+#!/bin/bash
+
+username="username"
+
+mail_file="/var/mail/$username"
+
+while true; do
+    if [ -e "$mail_file" ]; then
+        modification_time=$(stat -c %Y "$mail_file")
+        if [ "$modification_time" -gt "$last_check_time" ]; then
+            echo "New mail received for $username."
+            last_check_time=$modification_time
+        fi
+    fi
+    sleep 10
+done
+
+---------------------------------------------------------------------------------------------------
+
+
+
 
 
